@@ -42,14 +42,12 @@ static char	*search_str(char *haystack, char *needle, size_t len)
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	i;
 	char	*check_str;
 
 	if (!haystack && len == 0)
 		return (0);
 	if (needle[0] == '\0')
 		return ((char *)haystack);
-	i = 0;
 	check_str = search_str((char *)haystack, (char *)needle, len);
 	return (check_str);
 }

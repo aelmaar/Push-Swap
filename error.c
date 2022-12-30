@@ -32,17 +32,19 @@ static void	print_error_and_clear(t_list *head)
 static void	check_duplicates(t_list *head)
 {
 	t_list	*temp;
+	t_list	*free_list;
 
 	if (!head)
 		return ;
 	temp = head;
+	free_list = head;
 	head = head->next;
 	while (temp)
 	{
 		while (head)
 		{
 			if (temp->content == head->content)
-				print_error_and_clear(head);
+				print_error_and_clear(free_list);
 			head = head->next;
 		}
 		temp = temp->next;
