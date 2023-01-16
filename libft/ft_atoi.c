@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:36:25 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/12/29 18:33:17 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:32:58 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ long	ft_atoi(const char *str, t_list *head)
 	nb = 0;
 	while (*str == 32)
 		str++;
-	if (*str == '-')
+	if (*str == '-' && (*(str + 1) >= 48 && *(str + 1) <= 57))
 	{
 		sign *= (-1);
 		str++;

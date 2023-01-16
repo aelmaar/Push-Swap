@@ -6,21 +6,11 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:37:32 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/14 23:30:17 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:12:07 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
-#include <stdio.h>
-
-static void	print_list(t_list *head)
-{
-	while (head)
-	{
-		printf("%d\n", head->content);
-		head = head->next;
-	}
-}
 
 static void	print_error_and_clear(t_list *head)
 {
@@ -51,6 +41,18 @@ static void	check_duplicates(t_list *head)
 	}
 }
 
+static void	check_if_empty_args(char *argv)
+{
+	while (*argv)
+	{
+		if (*argv != ' ')
+			return ;
+		argv++;
+	}
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
+}
+
 static void	check_alpha_args(int argc, char *argv[], t_list **head)
 {
 	int		i;
@@ -60,6 +62,7 @@ static void	check_alpha_args(int argc, char *argv[], t_list **head)
 	i = 1;
 	while (argv[i])
 	{
+		check_if_empty_args(argv[i]);
 		j = 0;
 		while (argv[i][j])
 		{
@@ -81,5 +84,4 @@ static void	check_alpha_args(int argc, char *argv[], t_list **head)
 void	check_errors(int argc, char *argv[], t_list **head)
 {
 	check_alpha_args(argc, argv, head);
-	// print_list(*head);
 }
