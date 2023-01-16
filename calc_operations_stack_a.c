@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:17:37 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/16 17:26:04 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:46:57 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	findindex(int index_a, t_list *stack_a, \
 }
 
 t_list	*calc_positions(t_list *stack_a, t_list *stack_b, \
-						enumeration mx_v, enumeration mn_v)
+						t_enumeration mx_v, t_enumeration mn_v)
 {
 	t_list		*temp_a;
 	t_list		*head;

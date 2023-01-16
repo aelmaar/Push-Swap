@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 19:17:50 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/16 20:20:14 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:43:54 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	bigger_to_top(t_list *stack_a, t_list *stack_b)
 {
-	enumeration	min_value;
-	int			stack_a_size;
+	t_enumeration	min_value;
+	int				stack_a_size;
 
 	min_value = min(stack_a);
 	stack_a_size = ft_lstsize(stack_a);
@@ -39,9 +39,9 @@ static void	bigger_to_top(t_list *stack_a, t_list *stack_b)
 
 static void	from_a_to_b(t_list **stack_a, t_list **stack_b)
 {
-	t_list		*positions;
-	enumeration	max_val;
-	enumeration	min_val;
+	t_list			*positions;
+	t_enumeration	max_val;
+	t_enumeration	min_val;
 
 	positions = NULL;
 	while (*stack_a && ft_lstsize(*stack_a) >= 3)
@@ -61,9 +61,9 @@ static void	from_a_to_b(t_list **stack_a, t_list **stack_b)
 
 static void	from_b_to_a(t_list **stack_a, t_list **stack_b)
 {
-	t_list		*positions;
-	enumeration	max_val;
-	enumeration	min_val;
+	t_list			*positions;
+	t_enumeration	max_val;
+	t_enumeration	min_val;
 
 	positions = NULL;
 	while (*stack_b)

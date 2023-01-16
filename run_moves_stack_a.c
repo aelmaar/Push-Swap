@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:35:42 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/16 16:42:57 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:43:20 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ static void	find_index(int index_a, t_list **stack_a, \
 
 static void	apply_position(int index_a, t_list **stack_a, t_list **stack_b)
 {
-	int			i;
-	enumeration	max_val;
-	enumeration	min_val;
-	t_list		*temp;
+	int				i;
+	t_enumeration	max_val;
+	t_enumeration	min_val;
+	t_list			*temp;
 
 	i = 0;
 	max_val = max(*stack_b);

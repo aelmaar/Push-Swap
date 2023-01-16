@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:37:54 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/16 20:20:29 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:43:03 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,11 @@ static void	apply_operation_b(int index_a, t_list **stack_a, \
 	stack_a_size = ft_lstsize(*stack_a);
 	stack_b_size = ft_lstsize(*stack_b);
 	if (index_a <= (stack_a_size / 2) && index_b <= (stack_b_size / 2))
-	{
 		smart_rotate(index_a, index_b, stack_a, stack_b);
-	}
 	else if (index_a >= (stack_a_size / 2) && index_b >= (stack_b_size / 2))
-	{
 		smart_rev_rotate(index_a, index_b, stack_a, stack_b);
-	}
 	else
-	{
 		normal_rotation(index_a, index_b, stack_a, stack_b);
-	}
 	run_actions("pa\n", stack_a, stack_b);
 }
 
@@ -64,12 +58,13 @@ static void	find_index_b(int index_a, t_list **stack_a, \
 		temp_a = *stack_a;
 	}
 }
+
 static void	apply_position_b(int index_b, t_list **stack_a, t_list **stack_b)
 {
-	int			i;
-	enumeration	max_val;
-	enumeration	min_val;
-	t_list		*temp;
+	int				i;
+	t_enumeration	max_val;
+	t_enumeration	min_val;
+	t_list			*temp;
 
 	i = 0;
 	max_val = max(*stack_a);

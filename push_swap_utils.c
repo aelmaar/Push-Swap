@@ -6,16 +6,16 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:04:23 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/16 16:30:09 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:44:50 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-enumeration  max(t_list *stack_b)
+t_enumeration	max(t_list *stack_b)
 {
-	int			i;
-    enumeration val_ind;
+	int				i;
+	t_enumeration	val_ind;
 
 	if (stack_b)
 	{
@@ -36,10 +36,10 @@ enumeration  max(t_list *stack_b)
 	return (val_ind);
 }
 
-enumeration	min(t_list *stack_b)
+t_enumeration	min(t_list *stack_b)
 {
-	int			i;
-    enumeration	val_ind;
+	int				i;
+	t_enumeration	val_ind;
 
 	if (stack_b)
 	{
