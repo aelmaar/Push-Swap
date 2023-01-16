@@ -6,23 +6,23 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:11:42 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/10 22:46:28 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:53:08 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 
-void	ra(t_list *stack_a)
+void	rotate(t_list *stack)
 {
 	t_list	*new;
 	t_list	*temp;
 	int		reserve_top;
 
-	temp = stack_a;
+	temp = stack;
 	if (temp)
 	{
 		new = NULL;
-		reserve_top = stack_a->content;
+		reserve_top = stack->content;
 		temp = temp->next;
 		while (temp)
 		{
@@ -32,65 +32,67 @@ void	ra(t_list *stack_a)
 		temp = new;
 		while(temp)
 		{
-			stack_a->content = temp->content;
-			stack_a = stack_a->next;
+			stack->content = temp->content;
+			stack = stack->next;
 			temp = temp->next;
 		}
-		stack_a->content = reserve_top;
+		stack->content = reserve_top;
 		ft_lstclear(&new);
 	}
 }
 
-void	rra(t_list *stack_a)
+void	rev_rotate(t_list *stack)
 {
 	t_list	*new;
 	t_list	*temp;
 	int		reserve_last;
 
-	temp = stack_a;
+	temp = stack;
 	if (temp)
 	{
 		new = NULL;
-		reserve_last = ft_lstlast(stack_a)->content;
+		reserve_last = ft_lstlast(stack)->content;
 		while (temp->next)
 		{
 			ft_lstadd_back(&new, ft_lstnew(temp->content));
 			temp = temp->next;
 		}
 		temp = new;
-		stack_a->content = reserve_last;
+		stack->content = reserve_last;
 		while(temp)
 		{
-			stack_a = stack_a->next;
-			stack_a->content = temp->content;
+			stack = stack->next;
+			stack->content = temp->content;
 			temp = temp->next;
 		}
 		ft_lstclear(&new);
 	}
 }
 
-void	pb(t_list **stack_a, t_list **stack_b)
+void	push(t_list **stack_one, t_list **stack_two)
 {
 	t_list	*temp;
 
-	if (*stack_a)
+	if (*stack_one)
 	{
-		temp = *stack_a;
-		*stack_a = (*stack_a)->next;
-		ft_lstadd_front(stack_b, ft_lstnew(temp->content));
+		temp = *stack_one;
+		*stack_one = (*stack_one)->next;
+		ft_lstadd_front(stack_two, ft_lstnew(temp->content));
 		ft_lstdelone(temp);
 	}
 }
 
-void	pa(t_list **stack_a, t_list **stack_b)
+void	swap(t_list	*stack)
 {
-	t_list	*temp;
+	int	temp;
 
-	if (*stack_b)
+	if (stack)
 	{
-		temp = *stack_b;
-		*stack_b = (*stack_b)->next;
-		ft_lstadd_front(stack_a, ft_lstnew(temp->content));
-		ft_lstdelone(temp);
+		if (stack->next)
+		{
+			temp = stack->content;
+			stack->content = stack->next->content;
+			stack->next->content = temp;
+		}
 	}
 }

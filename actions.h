@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:51:43 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/10 22:44:37 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:53:17 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 #include "libft.h"
 
-void	ra(t_list *stack_a);
-void	rra(t_list *stack_a);
-void	pb(t_list **stack_a, t_list **stack_b);
-void	pa(t_list **stack_a, t_list **stack_b);
+void	rotate(t_list *stack);
+void	rev_rotate(t_list *stack);
+void	swap(t_list	*stack);
+void	push(t_list **stack_one, t_list **stack_two);
 
 #endif

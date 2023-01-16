@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:37:32 by ael-maar          #+#    #+#             */
-/*   Updated: 2022/12/29 20:26:00 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/14 23:30:17 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	check_alpha_args(int argc, char *argv[], t_list **head)
 			if (argv[i][j])
 			{
 				new = ft_lstnew(ft_atoi(&argv[i][j], *head));
-				ft_lstadd_front(head, new);
+				ft_lstadd_back(head, new);
 				check_duplicates(*head);
 			}
 			while (argv[i][j] && argv[i][j] != ' ')
@@ -81,5 +81,5 @@ static void	check_alpha_args(int argc, char *argv[], t_list **head)
 void	check_errors(int argc, char *argv[], t_list **head)
 {
 	check_alpha_args(argc, argv, head);
-	print_list(*head);
+	// print_list(*head);
 }

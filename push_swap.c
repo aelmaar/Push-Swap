@@ -6,122 +6,92 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 19:17:50 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/11 22:39:39 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:20:14 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static enumeration  max(t_list *stack_b)
+static void	bigger_to_top(t_list *stack_a, t_list *stack_b)
 {
-	int			i;
-    enumeration val_ind;
+	enumeration	min_value;
+	int			stack_a_size;
 
-	if (stack_b)
-	{
-		i = 0;
-		val_ind.value = stack_b->content;
-		val_ind.index = i;
-		while (stack_b)
-		{
-			if (val_ind.value < stack_b->content)
-			{
-				val_ind.value = stack_b->content;
-				val_ind.index = i;
-			}
-			i++;
-			stack_b = stack_b->next;
-		}
-	}
-	return (val_ind);
-}
-
-static enumeration  min(t_list *stack_b)
-{
-	int			i;
-    enumeration val_ind;
-
-	if (stack_b)
-	{
-		i = 0;
-		val_ind.value = stack_b->content;
-		val_ind.index = i;
-		while (stack_b)
-		{
-			if (val_ind.value > stack_b->content)
-			{
-				val_ind.value = stack_b->content;
-				val_ind.index = i;
-			}
-			i++;
-			stack_b = stack_b->next;
-		}
-	}
-	return (val_ind);
-}
-
-static int	calc_operations(int index, t_list *stack_a, t_list *stack_b, enumeration max_val)
-{
-	int ope;
-	int	stack_a_size;
-	int	stack_b_size;
-
+	min_value = min(stack_a);
 	stack_a_size = ft_lstsize(stack_a);
-	stack_b_size = ft_lstsize(stack_b);
-	ope = 0;
-	if (index <= (stack_a_size / 2) && max_val.index <= (stack_b_size / 2))
+	if (min_value.index <= (stack_a_size / 2))
 	{
-		while (index > 0 || max_val.index > 0)
+		while (min_value.index > 0)
 		{
-			ope++;
-			index--;
-			max_val.index--;
-		}
-	}
-	else if (index >= (stack_a_size / 2) && max_val.index >= (stack_b_size / 2))
-	{
-		while (index < stack_a_size || max_val.index < stack_b_size)
-		{
-			ope++;
-			index++;
-			max_val.index++;
+			run_actions("ra\n", &stack_a, &stack_b);
+			min_value.index--;
 		}
 	}
 	else
 	{
-		if (index <= (stack_a_size / 2))
-			ope += index;
-		else
-			ope += (stack_a_size - index);
-		if (max_val.index <= (stack_b_size / 2))
-			ope += max_val.index;
-		else
-			ope += (stack_b_size - max_val.index);
+		while (min_value.index < stack_a_size)
+		{
+			run_actions("rra\n", &stack_a, &stack_b);
+			min_value.index++;
+		}
 	}
-	return (ope);
 }
 
-static t_list	*calc_positions(t_list *stack_a, t_list *stack_b)
+static void	from_a_to_b(t_list **stack_a, t_list **stack_b)
 {
-	enumeration	max_value;
-	enumeration	min_value;
-	t_list		*head;
-	int			i;
+	t_list		*positions;
+	enumeration	max_val;
+	enumeration	min_val;
 
-	head = NULL;
-	max_value = max(stack_b);
-	min_value = min(stack_b);
-	i = 0;
-	while (stack_a)
+	positions = NULL;
+	while (*stack_a && ft_lstsize(*stack_a) >= 3)
 	{
-		if ((stack_a->content > max_value.value && stack_a->content > min_value.value))
-			
+		if (ft_lstsize(*stack_a) == 3)
+		{
+			three_elements(stack_a, stack_b);
+			break ;
+		}
+		max_val = max(*stack_b);
+		min_val = min(*stack_b);
+		positions = calc_positions(*stack_a, *stack_b, max_val, min_val);
+		perfect_position(positions, stack_a, stack_b);
+		ft_lstclear(&positions);
 	}
 }
 
-void	push_swap(t_list *stack_a, t_list *stack_b)
+static void	from_b_to_a(t_list **stack_a, t_list **stack_b)
 {
-	pb(&stack_a, &stack_b);
-    pb(&stack_a, &stack_b);
-    
+	t_list		*positions;
+	enumeration	max_val;
+	enumeration	min_val;
+
+	positions = NULL;
+	while (*stack_b)
+	{
+		max_val = max(*stack_a);
+		min_val = min(*stack_a);
+		positions = calc_positions_b(*stack_a, *stack_b, max_val, min_val);
+		perfect_position_b(positions, stack_a, stack_b);
+		ft_lstclear(&positions);
+	}
+}
+
+static void	push_swap_run(t_list **stack_a, t_list **stack_b)
+{
+	t_list		*positions;
+
+	positions = NULL;
+	from_a_to_b(stack_a, stack_b);
+	from_b_to_a(stack_a, stack_b);
+	bigger_to_top(*stack_a, *stack_b);
+}
+
+void	push_swap(t_list **stack_a, t_list **stack_b)
+{
+	if (ft_lstsize(*stack_a) > 3)
+	{
+		run_actions("pb\n", stack_a, stack_b);
+		run_actions("pb\n", stack_a, stack_b);
+	}
+	push_swap_run(stack_a, stack_b);
 }
