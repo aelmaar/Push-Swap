@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run.c                                              :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/29 18:09:47 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/14 23:30:38 by ael-maar         ###   ########.fr       */
+/*   Created: 2023/01/17 16:21:50 by ael-maar          #+#    #+#             */
+/*   Updated: 2023/01/17 17:29:16 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "push_swap.h"
-#include <stdio.h>
+#ifndef CHECKER_H
+# define CHECKER_H
 
-static void	print_list(t_list *head)
-{
-	while (head)
-	{
-		printf("%d\n", head->content);
-		head = head->next;
-	}
-}
+# include "libft.h"
+# include "unistd.h"
 
-int	main(int argc, char *argv[])
-{
-	t_list	*stack_a;
-	t_list	*stack_b;
+void	run_actions_for_checker(char *action, t_list **stack_a, t_list **stack_b);
+void	checker(t_list	**stack_a, t_list **stack_b);
+void	check_if_stack_a_sorted(t_list *stack_a, t_list *stack_b);
 
-	stack_a = NULL;
-	stack_b = NULL;
-	check_errors(argc, argv, &stack_a);
-	push_swap(&stack_a, &stack_b);
-	ft_lstclear(&stack_a);
-}
+#endif
