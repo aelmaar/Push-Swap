@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:37:32 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/16 22:12:07 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:50:01 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	check_if_empty_args(char *argv)
 	exit(1);
 }
 
-static void	check_alpha_args(int argc, char *argv[], t_list **head)
+static void	check_alpha_args(char *argv[], t_list **head)
 {
 	int		i;
 	int		j;
@@ -83,5 +83,6 @@ static void	check_alpha_args(int argc, char *argv[], t_list **head)
 
 void	check_errors(int argc, char *argv[], t_list **head)
 {
-	check_alpha_args(argc, argv, head);
+	if (argc > 1)
+		check_alpha_args(argv, head);
 }

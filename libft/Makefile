@@ -6,7 +6,7 @@
 #    By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 14:36:01 by ael-maar          #+#    #+#              #
-#    Updated: 2022/12/29 18:19:20 by ael-maar         ###   ########.fr        #
+#    Updated: 2023/01/18 18:31:42 by ael-maar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ tolibft: $(BSRCS)
 all: $(NAME)
 
 clean:
-	$(RM) *.o
+	$(RM) $(SRCS) $(BSRCS)
 
 fclean: clean
 	$(RM) $(NAME)

@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:04:23 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/18 16:32:56 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:23:51 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_enumeration	max(t_list *stack_b)
 	int				i;
 	t_enumeration	val_ind;
 
+	val_ind.index = -1;
 	if (stack_b)
 	{
 		i = 0;
@@ -41,6 +42,7 @@ t_enumeration	min(t_list *stack_b)
 	int				i;
 	t_enumeration	val_ind;
 
+	val_ind.index = -1;
 	if (stack_b)
 	{
 		i = 0;

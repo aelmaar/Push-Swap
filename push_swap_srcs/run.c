@@ -6,11 +6,10 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:09:47 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/18 16:10:31 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:56:11 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
 #include "push_swap.h"
 
 int	main(int argc, char *argv[])

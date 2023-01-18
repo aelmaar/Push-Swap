@@ -6,7 +6,7 @@
 #    By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 17:04:48 by ael-maar          #+#    #+#              #
-#    Updated: 2023/01/18 17:41:02 by ael-maar         ###   ########.fr        #
+#    Updated: 2023/01/18 18:21:00 by ael-maar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,15 +25,13 @@ UTILS_SRCS = $(UTILS)/actions.c $(UTILS)/error.c $(UTILS)/run_actions.c
 
 LIBFT = ./libft
 LIBFT_LIB = $(LIBFT)/libft.a
-LIBFT_HEADER = $(LIBFT)/libft.h
 
 
 GET_NEXT_LINE = ./get_next_line
 GET_NEXT_LINE_SRCS = $(GET_NEXT_LINE)/get_next_line.c $(GET_NEXT_LINE)/get_next_line_utils.c
-GET_NEXT_LINE_HEADER = $(GET_NEXT_LINE)/get_next_line.h
 
 INCL = ./Includes
-HEADER_FILES = -I $(INCL) -I $(LIBFT_HEADER) -I $(GET_NEXT_LINE_HEADER)
+HEADER_FILES = -I $(INCL) -I $(LIBFT) -I $(GET_NEXT_LINE)
 
 NAME = push_swap
 
@@ -46,7 +44,7 @@ $(LIBFT_LIB):
 	make bonus -C $(LIBFT)
 
 $(NAME): $(LIBFT_LIB) $(PUSH_SWAP_SRCS) $(UTILS_SRCS)
-	$(CC) $(CFLAGS) $(HEADER_FILES) $^ -o $@
+	$(CC) $(CFLAGS) $^ $(HEADER_FILES) -o $@
 
 checker: $(LIBFT_LIB) $(CHECKER_SRCS) $(GET_NEXT_LINE_SRCS) $(UTILS_SRCS)
 	$(CC) $(CFLAGS) $^ $(HEADER_FILES) -o $@
@@ -56,8 +54,9 @@ bonus: checker
 clean:
 	make clean -C $(LIBFT)
 
-fclean: clean
+fclean:
 	make fclean -C $(LIBFT)
+	rm -rf checker $(NAME)
 
 re: fclean all
 

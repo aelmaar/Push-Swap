@@ -6,12 +6,11 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:32:41 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/18 16:29:25 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:47:23 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
-#include "libft.h"
 
 static void	rr(t_list **stack_a, t_list **stack_b)
 {
