@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:32:41 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/18 17:47:23 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:09:13 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ void	run_actions_for_push_swap(char *action, t_list **stack_a, t_list **stack_b)
 	ft_putstr_fd(action, 1);
 }
 
-static void	check_if_other_action(t_list **stack_a, t_list **stack_b)
+static void	check_if_other_action(char *action, t_list **stack_a, t_list **stack_b)
 {
 	ft_lstclear(stack_a);
 	ft_lstclear(stack_b);
+	free(action);
 	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }
@@ -80,5 +81,5 @@ void	run_actions_for_checker(char *action, t_list **stack_a, t_list **stack_b)
 	else if (!ft_strncmp(action, "pb\n", ft_strlen(action)))
 		push(stack_a, stack_b);
 	else
-		check_if_other_action(stack_a, stack_b);
+		check_if_other_action(action, stack_a, stack_b);
 }
