@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:35:42 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/16 21:43:20 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:31:57 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	apply_operation(int index_a, t_list	**stack_a, \
 	{
 		normal_rotation(index_a, index_b, stack_a, stack_b);
 	}
-	run_actions("pb\n", stack_a, stack_b);
+	run_actions_for_push_swap("pb\n", stack_a, stack_b);
 }
 
 static void	find_index(int index_a, t_list **stack_a, \

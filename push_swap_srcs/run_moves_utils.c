@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extra_run_moves_stack_a.c                          :+:      :+:    :+:   */
+/*   run_moves_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 14:37:34 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/16 16:42:51 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:31:37 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ void	smart_rotate(int index_a, int index_b, \
 {
 	while (index_a > 0 && index_b > 0)
 	{
-		run_actions("rr\n", stack_a, stack_b);
+		run_actions_for_push_swap("rr\n", stack_a, stack_b);
 		index_a--;
 		index_b--;
 	}
 	while (index_a)
 	{
-		run_actions("ra\n", stack_a, stack_b);
+		run_actions_for_push_swap("ra\n", stack_a, stack_b);
 		index_a--;
 	}
 	while (index_b)
 	{
-		run_actions("rb\n", stack_a, stack_b);
+		run_actions_for_push_swap("rb\n", stack_a, stack_b);
 		index_b--;
 	}
 }
@@ -43,18 +43,18 @@ void	smart_rev_rotate(int index_a, int index_b, \
 	stack_b_size = ft_lstsize(*stack_b);
 	while (index_a < stack_a_size && index_b < stack_b_size)
 	{
-		run_actions("rrr\n", stack_a, stack_b);
+		run_actions_for_push_swap("rrr\n", stack_a, stack_b);
 		index_a++;
 		index_b++;
 	}
 	while (index_a < stack_a_size)
 	{
-		run_actions("rra\n", stack_a, stack_b);
+		run_actions_for_push_swap("rra\n", stack_a, stack_b);
 		index_a++;
 	}
 	while (index_b < stack_b_size)
 	{
-		run_actions("rrb\n", stack_a, stack_b);
+		run_actions_for_push_swap("rrb\n", stack_a, stack_b);
 		index_b++;
 	}
 }
@@ -64,7 +64,7 @@ static void	normal_rotate(int index, char *action, \
 {
 	while (index > 0)
 	{
-		run_actions(action, stack_a, stack_b);
+		run_actions_for_push_swap(action, stack_a, stack_b);
 		index--;
 	}
 }
@@ -83,7 +83,7 @@ void	normal_rotation(int index_a, int index_b, \
 	{
 		while (index_a < stack_a_size)
 		{
-			run_actions("rra\n", stack_a, stack_b);
+			run_actions_for_push_swap("rra\n", stack_a, stack_b);
 			index_a++;
 		}
 	}
@@ -93,7 +93,7 @@ void	normal_rotation(int index_a, int index_b, \
 	{
 		while (index_b < stack_b_size)
 		{
-			run_actions("rrb\n", stack_a, stack_b);
+			run_actions_for_push_swap("rrb\n", stack_a, stack_b);
 			index_b++;
 		}
 	}

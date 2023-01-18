@@ -6,24 +6,24 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 19:17:50 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/16 21:43:54 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:33:16 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	bigger_to_top(t_list *stack_a, t_list *stack_b)
+static void	small_to_top(t_list **stack_a, t_list **stack_b)
 {
 	t_enumeration	min_value;
 	int				stack_a_size;
 
-	min_value = min(stack_a);
-	stack_a_size = ft_lstsize(stack_a);
+	min_value = min(*stack_a);
+	stack_a_size = ft_lstsize(*stack_a);
 	if (min_value.index <= (stack_a_size / 2))
 	{
 		while (min_value.index > 0)
 		{
-			run_actions("ra\n", &stack_a, &stack_b);
+			run_actions_for_push_swap("ra\n", stack_a, stack_b);
 			min_value.index--;
 		}
 	}
@@ -31,7 +31,7 @@ static void	bigger_to_top(t_list *stack_a, t_list *stack_b)
 	{
 		while (min_value.index < stack_a_size)
 		{
-			run_actions("rra\n", &stack_a, &stack_b);
+			run_actions_for_push_swap("rra\n", stack_a, stack_b);
 			min_value.index++;
 		}
 	}
@@ -78,20 +78,19 @@ static void	from_b_to_a(t_list **stack_a, t_list **stack_b)
 
 static void	push_swap_run(t_list **stack_a, t_list **stack_b)
 {
-	t_list		*positions;
-
-	positions = NULL;
 	from_a_to_b(stack_a, stack_b);
 	from_b_to_a(stack_a, stack_b);
-	bigger_to_top(*stack_a, *stack_b);
+	small_to_top(stack_a, stack_b);
 }
 
 void	push_swap(t_list **stack_a, t_list **stack_b)
 {
-	if (ft_lstsize(*stack_a) > 3)
+	if (ft_lstsize(*stack_a) > 4)
 	{
-		run_actions("pb\n", stack_a, stack_b);
-		run_actions("pb\n", stack_a, stack_b);
+		run_actions_for_push_swap("pb\n", stack_a, stack_b);
+		run_actions_for_push_swap("pb\n", stack_a, stack_b);
 	}
+	else if (ft_lstsize(*stack_a) > 3)
+		run_actions_for_push_swap("pb\n", stack_a, stack_b);
 	push_swap_run(stack_a, stack_b);
 }

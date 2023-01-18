@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:21:18 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/16 21:52:11 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:29:45 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ void			smart_rev_rotate(int index_a, int index_b, \
 									t_list	**stack_a, t_list **stack_b);
 void			normal_rotation(int index_a, int index_b, \
 								t_list **stack_a, t_list **stack_b);
-void			run_actions(char *action, t_list **stack_a, t_list **stack_b);
+void			run_actions_for_push_swap(char *action, t_list **stack_a, t_list **stack_b);
 void			three_elements(t_list **stack_a, t_list **stack_b);
 t_enumeration	max(t_list *stack_b);
 t_enumeration	min(t_list *stack_b);
+
 #endif

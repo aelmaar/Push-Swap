@@ -6,68 +6,11 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:11:42 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/15 15:53:08 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:26:47 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
-
-void	rotate(t_list *stack)
-{
-	t_list	*new;
-	t_list	*temp;
-	int		reserve_top;
-
-	temp = stack;
-	if (temp)
-	{
-		new = NULL;
-		reserve_top = stack->content;
-		temp = temp->next;
-		while (temp)
-		{
-			ft_lstadd_back(&new, ft_lstnew(temp->content));
-			temp = temp->next;
-		}
-		temp = new;
-		while(temp)
-		{
-			stack->content = temp->content;
-			stack = stack->next;
-			temp = temp->next;
-		}
-		stack->content = reserve_top;
-		ft_lstclear(&new);
-	}
-}
-
-void	rev_rotate(t_list *stack)
-{
-	t_list	*new;
-	t_list	*temp;
-	int		reserve_last;
-
-	temp = stack;
-	if (temp)
-	{
-		new = NULL;
-		reserve_last = ft_lstlast(stack)->content;
-		while (temp->next)
-		{
-			ft_lstadd_back(&new, ft_lstnew(temp->content));
-			temp = temp->next;
-		}
-		temp = new;
-		stack->content = reserve_last;
-		while(temp)
-		{
-			stack = stack->next;
-			stack->content = temp->content;
-			temp = temp->next;
-		}
-		ft_lstclear(&new);
-	}
-}
 
 void	push(t_list **stack_one, t_list **stack_two)
 {
@@ -82,17 +25,57 @@ void	push(t_list **stack_one, t_list **stack_two)
 	}
 }
 
-void	swap(t_list	*stack)
+void	rotate(t_list **stack)
 {
-	int	temp;
+	t_list	*reserve_top;
+	t_list	*temp;
 
-	if (stack)
+	reserve_top = NULL;
+	temp = NULL;
+	if (*stack)
 	{
-		if (stack->next)
+		push(stack, &reserve_top);
+		while (*stack)
+			push(stack, &temp);
+		push(&reserve_top, stack);
+		while (temp)
+			push(&temp, stack);
+	}
+}
+
+void	rev_rotate(t_list **stack)
+{
+	t_list	*reserve_last;
+	t_list	*temp;
+
+	reserve_last = NULL;
+	temp = NULL;
+	if (*stack)
+	{
+		while ((*stack)->next)
+			push(stack, &temp);
+		push(stack, &reserve_last);
+		while (temp)
+			push(&temp, stack);
+		push(&reserve_last, stack);
+	}
+}
+
+void	swap(t_list	**stack)
+{
+	t_list	*first_top_element;
+	t_list	*second_top_element;
+
+	first_top_element = NULL;
+	second_top_element = NULL;
+	if (*stack)
+	{
+		if ((*stack)->next)
 		{
-			temp = stack->content;
-			stack->content = stack->next->content;
-			stack->next->content = temp;
+			push(stack, &first_top_element);
+			push(stack, &second_top_element);
+			push(&first_top_element, stack);
+			push(&second_top_element, stack);
 		}
 	}
 }
