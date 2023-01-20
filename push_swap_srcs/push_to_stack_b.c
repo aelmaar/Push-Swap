@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 09:35:57 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/20 18:24:14 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:18:00 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,23 @@ static void	check_from_top_again(t_list **stack_a, t_list **stack_b, t_list *cp)
 	}
 }
 
+static int	check_if_stack_a_sorted(t_list *stack_a)
+{
+	while (stack_a)
+	{
+		if ((stack_a->next && stack_a->content > stack_a->next->content))
+			return (0);
+		stack_a = stack_a->next;
+	}
+	return (1);
+}
+
 void	push_to_b(t_list **stack_a, t_list **stack_b, t_list *cp)
 {
 	int	middle;
 	int	i;
 
-	while (ft_lstsize(*stack_a) > 3)
+	while (ft_lstsize(cp) > 3 && !check_if_stack_a_sorted(*stack_a))
 	{
 		i = 1;
 		middle = ft_lstsize(cp) / 2;
