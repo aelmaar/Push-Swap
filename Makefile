@@ -6,15 +6,14 @@
 #    By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 17:04:48 by ael-maar          #+#    #+#              #
-#    Updated: 2023/01/18 18:21:00 by ael-maar         ###   ########.fr        #
+#    Updated: 2023/01/20 18:28:36 by ael-maar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PUSH_SWAP = ./push_swap_srcs
-PUSH_SWAP_SRCS = $(PUSH_SWAP)/push_swap.c $(PUSH_SWAP)/push_swap_utils.c \
-$(PUSH_SWAP)/calc_operations_stack_a.c $(PUSH_SWAP)/calc_operations_stack_b.c \
-$(PUSH_SWAP)/calc_operations_utils.c $(PUSH_SWAP)/run_moves_stack_a.c \
-$(PUSH_SWAP)/run_moves_stack_b.c $(PUSH_SWAP)/run_moves_utils.c $(PUSH_SWAP)/run.c
+PUSH_SWAP_SRCS = $(PUSH_SWAP)/push_swap.c $(PUSH_SWAP)/push_swap_utils.c  $(PUSH_SWAP)/push_to_stack_b.c \
+$(PUSH_SWAP)/calc_operations.c $(PUSH_SWAP)/calc_operations_utils.c $(PUSH_SWAP)/run_moves.c \
+$(PUSH_SWAP)/run_moves_utils.c $(PUSH_SWAP)/run.c
 
 CHECKER = ./checker_srcs
 CHECKER_SRCS = $(CHECKER)/check_utils.c $(CHECKER)/checker.c $(CHECKER)/run.c

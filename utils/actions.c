@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:11:42 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/18 16:26:47 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:12:58 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,39 +25,47 @@ void	push(t_list **stack_one, t_list **stack_two)
 	}
 }
 
-void	rotate(t_list **stack)
+void	rotate(t_list **stack, int repeat)
 {
 	t_list	*reserve_top;
 	t_list	*temp;
 
 	reserve_top = NULL;
 	temp = NULL;
-	if (*stack)
+	while (repeat > 0)
 	{
-		push(stack, &reserve_top);
-		while (*stack)
-			push(stack, &temp);
-		push(&reserve_top, stack);
-		while (temp)
-			push(&temp, stack);
+		if (*stack)
+		{
+			push(stack, &reserve_top);
+			while (*stack)
+				push(stack, &temp);
+			push(&reserve_top, stack);
+			while (temp)
+				push(&temp, stack);
+		}
+		repeat--;
 	}
 }
 
-void	rev_rotate(t_list **stack)
+void	rev_rotate(t_list **stack, int repeat)
 {
 	t_list	*reserve_last;
 	t_list	*temp;
 
 	reserve_last = NULL;
 	temp = NULL;
-	if (*stack)
+	while (repeat > 0)
 	{
-		while ((*stack)->next)
-			push(stack, &temp);
-		push(stack, &reserve_last);
-		while (temp)
-			push(&temp, stack);
-		push(&reserve_last, stack);
+		if (*stack)
+		{
+			while ((*stack)->next)
+				push(stack, &temp);
+			push(stack, &reserve_last);
+			while (temp)
+				push(&temp, stack);
+			push(&reserve_last, stack);
+		}
+		repeat--;
 	}
 }
 

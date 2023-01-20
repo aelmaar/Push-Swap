@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:37:32 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/18 17:50:01 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:02:53 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,17 @@ static void	check_duplicates(t_list *head)
 
 	if (!head)
 		return ;
-	temp = head;
 	free_list = head;
-	head = head->next;
-	while (temp)
+	while (head)
 	{
-		while (head)
+		temp = head->next;
+		while (temp)
 		{
-			if (temp->content == head->content)
+			if (head->content == temp->content)
 				print_error_and_clear(free_list);
-			head = head->next;
+			temp = temp->next;
 		}
-		temp = temp->next;
+		head = head->next;
 	}
 }
 

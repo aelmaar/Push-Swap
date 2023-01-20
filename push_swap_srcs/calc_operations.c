@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_operations_stack_a.c                          :+:      :+:    :+:   */
+/*   calc_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/15 14:17:37 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/16 21:46:57 by ael-maar         ###   ########.fr       */
+/*   Created: 2023/01/16 12:33:13 by ael-maar          #+#    #+#             */
+/*   Updated: 2023/01/20 18:26:52 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static int	calc_operations(int index_a, t_list *stack_a, \
-							t_list *stack_b, int index_b)
+								t_list *stack_b, int index_b)
 {
 	int	ope;
 	int	stack_a_size;
@@ -33,8 +33,8 @@ static int	calc_operations(int index_a, t_list *stack_a, \
 	return (ope);
 }
 
-static int	findindex(int index_a, t_list *stack_a, \
-							t_list *stack_b, int index_b)
+static int	find_exact_position_index(int index_a, t_list *stack_a, \
+						t_list *stack_b, int index_b)
 {
 	t_list	*temp_a;
 	t_list	*temp_b;
@@ -43,49 +43,49 @@ static int	findindex(int index_a, t_list *stack_a, \
 	temp_a = stack_a;
 	temp_b = stack_b;
 	i = 0;
-	to_position(&stack_a, &i, index_a);
-	i = 0;
 	to_position(&stack_b, &i, index_b);
+	i = 0;
+	to_position(&stack_a, &i, index_a);
 	while (1)
 	{
-		while (stack_b)
+		while (stack_a)
 		{
-			if (stack_a->content > stack_b->content)
-				return (calc_operations(index_a, temp_a, temp_b, i));
+			if (stack_b->content < stack_a->content)
+				return (calc_operations(i, temp_a, temp_b, index_b));
 			i++;
-			stack_b = stack_b->next;
+			stack_a = stack_a->next;
 		}
 		i = 0;
-		stack_b = temp_b;
+		stack_a = temp_a;
 	}
 }
 
 t_list	*calc_positions(t_list *stack_a, t_list *stack_b, \
 						t_enumeration mx_v, t_enumeration mn_v)
 {
-	t_list		*temp_a;
+	t_list		*temp;
 	t_list		*head;
 	int			ope;
 	int			i;
 
 	head = NULL;
-	temp_a = stack_a;
+	temp = stack_b;
 	i = 0;
-	while (stack_a)
+	while (stack_b)
 	{
-		if ((stack_a->content > mx_v.value && stack_a->content > mn_v.value)
-			|| (stack_a->content < mx_v.value && stack_a->content < mn_v.value))
+		if ((stack_b->content > mx_v.value && stack_b->content > mn_v.value)
+			|| (stack_b->content < mx_v.value && stack_b->content < mn_v.value))
 		{
-			ope = calc_operations(i, temp_a, stack_b, mx_v.index);
+			ope = calc_operations(mn_v.index, stack_a, temp, i);
 			ft_lstadd_back(&head, ft_lstnew(ope));
 		}
 		else
 		{
-			ope = findindex(i, temp_a, stack_b, mx_v.index);
+			ope = find_exact_position_index(mn_v.index, stack_a, temp, i);
 			ft_lstadd_back(&head, ft_lstnew(ope));
 		}
 		i++;
-		stack_a = stack_a->next;
+		stack_b = stack_b->next;
 	}
 	return (head);
 }
