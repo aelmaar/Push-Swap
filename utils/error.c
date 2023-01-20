@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:37:32 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/01/20 13:02:53 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:51:34 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	check_duplicates(t_list *head)
 	}
 }
 
-static void	check_if_empty_args(char *argv)
+static void	check_if_empty_args(char *argv, t_list *stack_a)
 {
 	while (*argv)
 	{
@@ -48,8 +48,7 @@ static void	check_if_empty_args(char *argv)
 			return ;
 		argv++;
 	}
-	ft_putstr_fd("Error\n", 2);
-	exit(1);
+	print_error_and_clear(stack_a);
 }
 
 static void	check_alpha_args(char *argv[], t_list **head)
@@ -61,7 +60,7 @@ static void	check_alpha_args(char *argv[], t_list **head)
 	i = 1;
 	while (argv[i])
 	{
-		check_if_empty_args(argv[i]);
+		check_if_empty_args(argv[i], *head);
 		j = 0;
 		while (argv[i][j])
 		{
